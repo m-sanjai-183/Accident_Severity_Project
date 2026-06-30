@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accident Prediction Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard2.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="/">
+            <i class="fas fa-home"></i> Home
+        </a>
+
+        <a href="/dashboard" class="active">
+            <i class="fas fa-chart-bar"></i> Dashboard
+        </a>
+
+        <a href="/history">
+            <i class="fas fa-history"></i> History
+        </a>
+    </nav>
+
+    <div class="container">
+
+        <h1>Accident Prediction Dashboard</h1>
+
+        <!-- Cards -->
+        <div class="card-container">
+
+            <div class="card total">
+                <i class="fas fa-users"></i>
+                <div>
+                    <h3>Total Predictions</h3>
+                    <h2>{{ total }}</h2>
+                </div>
+            </div>
+
+            <div class="card fatal">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <h3>Fatal</h3>
+                    <h2>{{ fatal }}</h2>
+                </div>
+            </div>
+
+            <div class="card serious">
+                <i class="fas fa-exclamation-circle"></i>
+                <div>
+                    <h3>Serious</h3>
+                    <h2>{{ serious }}</h2>
+                </div>
+            </div>
+
+            <div class="card minor">
+                <i class="fas fa-shield-alt"></i>
+                <div>
+                    <h3>Minor</h3>
+                    <h2>{{ minor }}</h2>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+
+            <h2>Severity Summary</h2>
+
+            <table>
+                <tr>
+                    <th>Severity</th>
+                    <th>Count</th>
+                </tr>
+
+                <tr>
+                    <td>Fatal</td>
+                    <td>{{ fatal }}</td>
+                </tr>
+
+                <tr>
+                    <td>Serious</td>
+                    <td>{{ serious }}</td>
+                </tr>
+
+                <tr>
+                    <td>Minor</td>
+                    <td>{{ minor }}</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- First Row Charts -->
+        <div class="chart-grid">
+
+            <div class="chart-box">
+                <h2>Bar Chart</h2>
+                <canvas id="barChart"></canvas>
+            </div>
+
+            <div class="chart-box">
+                <h2>Pie Chart</h2>
+                <canvas id="pieChart"></canvas>
+            </div>
+
+            <div class="chart-box">
+                <h2>Line Chart</h2>
+                <canvas id="lineChart"></canvas>
+            </div>
+
+        </div>
+
+        <!-- Second Row Charts -->
+        <div class="chart-grid">
+
+            <div class="chart-box">
+                <h2>Radar Chart</h2>
+                <canvas id="radarChart"></canvas>
+            </div>
+
+            <div class="chart-box">
+                <h2>Doughnut Chart</h2>
+                <canvas id="doughnutChart"></canvas>
+            </div>
+
+            <div class="chart-box">
+                <h2>Polar Area Chart</h2>
+                <canvas id="polarChart"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const chartData = [{{ fatal }}, {{ serious }}, {{ minor }}];
+
+        const chartColors = [
+            '#0d8af0',
+            '#ff2d55',
+            '#ff9800'
+        ];
+
+        // Bar Chart
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Fatal', 'Serious', 'Minor'],
+                datasets: [{
+                    label: 'Accident Severity Count',
+                    data: chartData,
+                    backgroundColor: chartColors
+                }]
+            }
+        });
+
+        // Pie Chart
+        new Chart(document.getElementById('pieChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Fatal', 'Serious', 'Minor'],
+                datasets: [{
+                    data: chartData,
+                    backgroundColor: chartColors
+                }]
+            }
+        });
+
+        // Line Chart
+        new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: {
+                labels: ['Fatal', 'Serious', 'Minor'],
+                datasets: [{
+                    label: 'Severity Trend',
+                    data: chartData,
+                    borderColor: '#0d8af0',
+                    fill: false
+                }]
+            }
+        });
+
+        // Radar Chart
+        new Chart(document.getElementById('radarChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Fatal', 'Serious', 'Minor'],
+                datasets: [{
+                    label: 'Severity Analysis',
+                    data: chartData,
+                    backgroundColor: 'rgba(13,138,240,0.2)',
+                    borderColor: '#0d8af0'
+                }]
+            }
+        });
+
+        // Doughnut Chart
+        new Chart(document.getElementById('doughnutChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Fatal', 'Serious', 'Minor'],
+                datasets: [{
+                    data: chartData,
+                    backgroundColor: chartColors
+                }]
+            }
+        });
+
+        // Polar Area Chart
+        new Chart(document.getElementById('polarChart'), {
+            type: 'polarArea',
+            data: {
+                labels: ['Fatal', 'Serious', 'Minor'],
+                datasets: [{
+                    data: chartData,
+                    backgroundColor: chartColors
+                }]
+            }
+        });
+
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Road Accident Severity Prediction</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <a href="/" class="active">
+            <i class="fas fa-home"></i> Home
+        </a>
+
+        <a href="/dashboard">
+            <i class="fas fa-chart-bar"></i> Dashboard
+        </a>
+
+        <a href="/history">
+            <i class="fas fa-history"></i> History
+        </a>
+
+    </nav>
+
+    <div class="container">
+
+        <h1>AI-Powered Road Accident Severity Prediction</h1>
+
+        <form action="/predict" method="post">
+
+            <label>Vehicle Speed:</label><br>
+            <input type="number" name="speed" required><br><br>
+
+            <label>Weather:</label><br>
+            <select name="weather">
+                <option value="Clear">Clear</option>
+                <option value="Rain">Rain</option>
+            </select><br><br>
+
+            <label>Road Condition:</label><br>
+            <select name="road_condition">
+                <option value="Dry">Dry</option>
+                <option value="Wet">Wet</option>
+            </select><br><br>
+
+            <label>Number of Vehicles:</label><br>
+            <input type="number" name="vehicles" required><br><br>
+
+            <button type="submit">Predict Severity</button>
+
+        </form>
+
+        {% if prediction_text %}
+        <div class="result-box">
+            <h2>Prediction Result</h2>
+            <h3>{{ prediction_text }}</h3>
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
+

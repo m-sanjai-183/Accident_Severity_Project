@@ -1,0 +1,142 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f6f9;
+}
+
+/* Navbar */
+
+.navbar{
+    background:linear-gradient(to right,#001f4d,#003b8e);
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+.navbar a{
+    float:left;
+    color:white;
+    text-decoration:none;
+    padding:18px 25px;
+    font-size:18px;
+    transition:0.3s;
+    background:none;
+    border-radius:0;
+    margin:0;
+}
+
+.navbar a:hover,
+.navbar .active{
+    background:#0d6efd;
+}
+
+/* Container */
+
+.container{
+    width:90%;
+    max-width:700px;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+    color:#0b234f;
+    margin-bottom:25px;
+}
+
+/* Form */
+
+label{
+    font-weight:bold;
+    color:#2c3e50;
+}
+
+input,
+select{
+    width:100%;
+    padding:12px;
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#084298;
+}
+
+/* Prediction Result */
+
+.result-box{
+    margin-top:25px;
+    padding:20px;
+    background:#f8f9fa;
+    border-left:6px solid #0d6efd;
+    border-radius:10px;
+    text-align:center;
+}
+
+/* History Table */
+
+table{
+    width:95%;
+    margin:20px auto;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+th{
+    background:#0d6efd;
+    color:white;
+}
+
+th,
+td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#f8f9fa;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .container{
+        width:95%;
+    }
+
+    .navbar a{
+        float:none;
+        display:block;
+        text-align:left;
+    }
+
+    table{
+        width:100%;
+    }
+}
+
